@@ -11,6 +11,7 @@ const store = createStore({
       search: "",
       isError: false,
       weatherData: {},
+      map:'',
     }
   },
   getters: {
@@ -31,7 +32,7 @@ const store = createStore({
         clouds,
         humidity,
       };
-    },
+    }, 
     getWeatherCountry(state) {
       return state.weatherData.country;
     },
@@ -51,6 +52,9 @@ const store = createStore({
     },
     ["SET_ERROR"](state, value) {
       state.isError = value;
+    },
+    ["SET_MAP"](state, value) {
+      state.map = value;
     },
   },
   actions: {
