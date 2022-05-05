@@ -17,7 +17,7 @@
       <span class="relative top-6 left-1 text-6xl">{{getWeatherMain.temp | round}}</span>
       <sup class="relative bottom-3 left-0">&deg;</sup>
     </div>
-    <div  class="my-2 block">{{getWeatherMain.description}}</div>
+    <div  class="my-2 block text-2xl">{{getWeatherMain.description}}</div>
     <p></p>
   </div>
 </template>

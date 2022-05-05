@@ -1,25 +1,21 @@
 <template>
   <div>
-    <input type="search" class="lg:w-2/5 w-3/5 focus:outline-none focus:border-sky-300 focus:ring-1 focus:ring-sky-500 border-2 shadow-md border-gray-200 rounded-full px-6 pr-4 lg:py-2 py-2 mx-auto block lg:mt-10 lg:mb-10 mt-5 mb-5">
-    <div class="map_wrap w-5/6 h-52 relative mx-auto">
+    <!-- <input type="search" class="lg:w-2/5 w-3/5 focus:outline-none focus:border-sky-300 focus:ring-1 focus:ring-sky-500 border-2 shadow-md border-gray-200 rounded-full px-6 pr-4 lg:py-2 py-2 mx-auto block lg:mt-10 lg:mb-10 mt-5 mb-5"> -->
+    <div class="map_wrap w-5/6 h-60 relative mx-auto my-4">
       <div id="map" class="w-full h-full block absolute" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
     </div>
     
-    <div class="text-center w-full lg:pb-2 lg:pt-0 pt-4 pb-4">
+    <!-- <div class="text-center w-full lg:pb-2 lg:pt-4 pt-4 pb-4">
       <i class="fa-solid fa-location-dot"></i>{{textContent}}<button class="border-2 rounded-full ml-3 border-gray-300 px-3 py-1 text-xs" @click="geofind()">현재위치찾기</button>
-    </div>
+    </div> -->
     <div class="text-center">
       <ul id="category" class="w-full bg-white inline-block lg:p-5 items-center mx-auto justify-center lg:mb-0 mb-6">
-        <li id="PM9" data-order="0" class=""><div>근처<br/><b class="px-1 contents">약국</b>은?</div></li>
         <li id="CS2" data-order="1" class=""><div>근처<br/><b class="px-1 contents">편의점</b>은?</div></li>
         <li id="CE7" data-order="2" class=""><div>근처<br/><b class="px-1 contents">카페</b>는?</div></li>
         <li id="OL7" data-order="3" class=""><div>근처<br/><b class="px-1 contents">주유소</b>는?</div></li>
         <li id="PK6" data-order="4" class=""><div>근처<br/><b class="px-1 contents">주차장</b>은?</div></li>
         <li id="FD6" data-order="5" class=""><div>근처<br/><b class="px-1 contents">맛집</b>은?</div></li>
-        <li id="SW8" data-order="6" class=""><div>근처<br/><b class="px-1 contents">지하철역</b>는?</div></li>
-        <li id="MT1" data-order="7" class=""><div>근처<br/><b class="px-1 contents">대형마트</b>은?</div></li>
-        <li id="AT4" data-order="8" class=""><div>근처<br/><b class="px-1 contents">관광명소</b>은?</div></li>
-        <li id="HP8" data-order="9" class=""><div>근처<br/><b class="px-1 contents">병원</b>는?</div></li>
+        <li id="PM9" data-order="0" class=""><div>근처<br/><b class="px-1 contents">약국</b>은?</div></li>
       </ul>
     </div>
   </div>
@@ -76,7 +72,8 @@ export default {
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
             mapOption = {
                 center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-                level: 4 // 지도의 확대 레벨
+                level: 5, // 지도의 확대 레벨,
+                draggable: true
             };  
 
         // 지도를 생성합니다    
@@ -229,7 +226,7 @@ export default {
                 markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
                     marker = new kakao.maps.Marker({
                     position: position, // 마커의 위치
-                    image: markerImage 
+                    //image: markerImage 
                 });
 
             marker.setMap(map); // 지도 위에 마커를 표출합니다
@@ -252,8 +249,8 @@ export default {
                             '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';   
 
             if (place.road_address_name) {
-                content += '    <span title="' + place.road_address_name + '">' + place.road_address_name + '</span>' +
-                            '  <span class="jibun" title="' + place.address_name + '">(지번 : ' + place.address_name + ')</span>';
+                content += '  <br/>  <span title="' + place.road_address_name + '">' + place.road_address_name + '</span>' +
+                            ' <br/>   <span class="jibun" title="' + place.address_name + '">(지번 : ' + place.address_name + ')</span>';
             }  else {
                 content += '    <span title="' + place.address_name + '">' + place.address_name + '</span>';
             }                
@@ -320,17 +317,26 @@ export default {
 
 <style>
 #category li {    
-  display: inline-block;
-  width: 25%;
-  margin: 10px 10px 10px;
-  padding: 15px 0 15px;
-  text-align: center;
-  background: #F3F4F6;
-  border-radius: 5px;
+    display: inline-block;
+    width: 25%;
+    margin: 10px 10px 10px;
+    padding: 15px 0 15px;
+    text-align: center;
+    background: #F3F4F6;
+    border-radius: 5px;
 }
 #category li.on {
-  background: #3B82F6;
-  color:#fff;    
-  box-shadow: 0px 4px 5px #ccc;
+    background: #3B82F6;
+    color:#fff;    
+    box-shadow: 0px 4px 5px #ccc;
+}
+.placeinfo_wrap {
+    margin: 0 auto;
+    overflow: hidden;
+    background: #000000b0;
+    padding: 5px;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 100;
 }
 </style>
