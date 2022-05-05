@@ -5,7 +5,7 @@
       <div
         v-for="nav in navigations"
         :key="nav.name"
-        class="nav-item font-bold lg:text-2xl text-2xl w-1/2 transition-all ease-in-out text-center cursor:pointer py-3 rounded-xl hover:bg-blue-50 hover:text-blue-500">
+        class="nav-item font-bold lg:text-2xl text-xl w-1/2 transition-all ease-in-out text-center cursor:pointer py-3 rounded-xl hover:bg-blue-50 hover:text-blue-500">
         <RouterLink
           :to="nav.href"
           active-class="active"
@@ -27,11 +27,11 @@ export default {
     return {
       navigations: [
         {
-          name: '홈',
+          name: '근처 검색',
           href: '/'
         },
         {
-          name: '날씨',
+          name: '현재 날씨',
           href: '/weather'
         },
       ]
